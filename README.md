@@ -58,4 +58,20 @@ Direct screens include `lifestage.html#teen`, `#pcos`, `#pregnancy`, `#menopause
 
 Open `index.html` directly, or run `python -m http.server 8080` and visit http://localhost:8080/.
 
-The homepage uses its own `home.css` and `home.js` so its light/dark themes and animations do not interfere with the existing app screens. It includes scroll reveals and a progress indicator, animated 2D botanical artwork, three clickable cycle previews, keyboard-accessible life-stage tabs, expandable FAQs, and a start/stop breathing exercise. Theme selection follows your system initially and remembers an explicit choice in this browser. Reduced-motion preferences are respected; content remains visible without JavaScript. Cycle previews are illustrative and do not write to saved health data.
+The homepage uses its own `home.css` and `home.js` so its light/dark themes and animations do not interfere with the existing app screens. The living canvas edition includes:
+
+- Pointer-driven 3D parallax on desktop and a botanical HTML canvas using the five pastel brand colors. One 30fps render loop is capped at 38 particles (18 on mobile) and a 1.75 device pixel ratio. It pauses when the hero leaves the viewport or the document is hidden.
+- Keyboard-accessible life-stage tabs and previous/next controls. A shared `FluidSurface` engine morphs decorative SVG paths and briefly animates displacement filters, leaving text and controls crisp. Rapid selections cancel and retarget the current transition.
+- A start/stop/reset breathing stepper with three rounds of four-second inhales and exhales. Timers stop when the document is hidden; delayed callbacks reset rather than rushing missed steps.
+- IntersectionObserver structural reveals, spring-like control feedback, a manual motion pause, reduced-transparency and forced-color fallbacks. Every CSS animation/transition is inside `prefers-reduced-motion: no-preference`; JavaScript also responds to live preference changes. With reduced motion, controls and timers still function while visual movement is disabled.
+- System-aware light/dark themes with saved preferences. The homepage does not create or modify health records. Without JavaScript, content stays visible, chapter links remain available, and the breathing instructions remain readable.
+
+Modules in `home.js` cover safe preference storage, theme/motion coordination, reveal observation, bounded fluid transitions, chapter state, breathing state, the canvas/parallax island, and page lifecycle cleanup. There are no framework, animation-library, or network asset dependencies.
+
+Run the dependency-free interaction/lifecycle checks with:
+
+```powershell
+node --test tests/home.test.cjs
+```
+
+These tests cover state and lifecycle behavior using a DOM test harness. They do not substitute for checking rendering at 375px, 768px, and 1440px in both themes, plus reduced-motion and pointer/touch modes, in a browser.
