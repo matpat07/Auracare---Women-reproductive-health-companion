@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="UTF-8"/>
 <title>Cycle & Symptoms — Aura Care</title>
 <link rel="stylesheet" href="style.css"/>
 <style>
-.cycle-ring{width:180px;height:180px;border-radius:50%;background:conic-gradient(#0070C0 0deg,#7FC4A0 120deg,#D68CA0 240deg,#0070C0 360deg);margin:0 auto;display:flex;align-items:center;justify-content:center}
+.cycle-ring{width:180px;height:180px;border-radius:50%;background:conic-gradient(#514659 0deg,#CDEBDD 120deg,#F8C8DC 240deg,#514659 360deg);margin:0 auto;display:flex;align-items:center;justify-content:center}
 .cycle-inner{width:122px;height:122px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;box-shadow:0 2px 12px rgba(36,52,77,.1)}
 .phase-badge{display:inline-block;padding:.3rem .9rem;border-radius:20px;font-size:.85rem;font-weight:600;background:var(--lav-fill);color:var(--pri);border:1px solid var(--lav-border)}
 .symptom-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin:1rem 0}
@@ -19,6 +20,8 @@ input[type="date"],input[type="number"],textarea,select{background:#fff;border:1
 input[type="date"]:focus,input[type="number"]:focus,textarea:focus{outline:none;border-color:var(--pri)}
 .period-entry{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;background:var(--lav-fill);border:1px solid var(--lav-border);border-radius:8px;margin-bottom:.4rem;font-size:.9rem}
 </style>
+<link rel="stylesheet" href="pastel.css"/>
+<script src="ui.js" defer></script>
 </head>
 <body class="app">
 <aside class="sidebar">

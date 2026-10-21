@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="UTF-8"/>
 <title>Life Stages — Aura Care</title>
 <link rel="stylesheet" href="style.css"/>
@@ -22,7 +23,7 @@
 .quiz-opts{display:flex;gap:.6rem;flex-wrap:wrap}
 .quiz-opt{background:var(--lav-fill);border:1.5px solid var(--lav-border);color:var(--text);padding:.6rem 1.1rem;border-radius:10px;cursor:pointer;font-size:.88rem;transition:all .2s}
 .quiz-opt:hover{border-color:var(--purp-border);background:var(--purp-fill)}
-.quiz-opt.selected{border-color:var(--pri);background:#E8F3FA;color:var(--pri);font-weight:600}
+.quiz-opt.selected{border-color:var(--pri);background:#CFE3F8;color:var(--pri);font-weight:600}
 .result-low{background:var(--mint-fill);border:1px solid var(--mint-border);border-radius:14px;padding:1.5rem}
 .result-mod{background:var(--purp-fill);border:1px solid var(--purp-border);border-radius:14px;padding:1.5rem}
 .result-high{background:var(--rose-fill);border:1px solid var(--rose-border);border-radius:14px;padding:1.5rem}
@@ -34,11 +35,13 @@
 .rating-dot.filled{background:var(--pri);border-color:var(--pri)}
 /* Pregnancy week */
 .week-card{background:var(--lav-fill);border:1px solid var(--lav-border);border-radius:12px;padding:1rem;margin-bottom:.7rem;border-left:4px solid var(--pri)}
-.tag-badge{display:inline-block;background:var(--peach-fill);color:#7A4B1A;border:1px solid var(--peach-border);border-radius:10px;padding:.2rem .7rem;font-size:.78rem;font-weight:600;margin-left:.5rem}
+.tag-badge{display:inline-block;background:var(--peach-fill);color:#514659;border:1px solid var(--peach-border);border-radius:10px;padding:.2rem .7rem;font-size:.78rem;font-weight:600;margin-left:.5rem}
 /* inputs on lifestage */
 select,input[type="date"],input[type="number"],input[type="text"],textarea{background:#fff;border:1px solid var(--lav-border);color:var(--text);border-radius:10px;font-family:inherit;color-scheme:light}
 select:focus,input:focus,textarea:focus{outline:none;border-color:var(--pri)}
 </style>
+<link rel="stylesheet" href="pastel.css"/>
+<script src="ui.js" defer></script>
 </head>
 <body class="app">
 <aside class="sidebar">
@@ -101,11 +104,11 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--pri)}
       <div class="grid-2">
         <div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#7A4B1A;margin-bottom:.7rem">🩸 What is a Period?</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">🩸 What is a Period?</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">A period (menstruation) is when the uterus sheds its lining. It usually lasts 3–7 days and comes once a month. It's completely normal — every woman has one.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#2E7D5A;margin-bottom:.7rem">📆 Will it be regular?</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">📆 Will it be regular?</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">In the first 1–2 years, periods are often irregular — that's normal! Stress, weight changes, and illness can also shift dates. Use the Cycle Tracker to log yours.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem">
@@ -115,11 +118,11 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--pri)}
         </div>
         <div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#7A4B1A;margin-bottom:.7rem">😟 Is it supposed to hurt?</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">😟 Is it supposed to hurt?</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Mild cramps are normal. Severe pain that stops you from daily activities is not — talk to a trusted adult or doctor. You deserve to be pain-free.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#2E7D5A;margin-bottom:.7rem">🧴 Products 101</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">🧴 Products 101</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Pads, tampons, menstrual cups, and period underwear all work. There's no "right" choice — use whatever feels comfortable for you.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem">
@@ -187,13 +190,13 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--pri)}
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Sudden warmth spreading from chest to face is a vasomotor symptom. <strong>What helps:</strong> cool water, layered clothing, paced breathing (slow exhale). Tracking triggers (spicy food, caffeine, stress) helps predict them.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#2E7D5A;margin-bottom:.7rem">😴 Sleep Changes</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">😴 Sleep Changes</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Night sweats and insomnia are common. Keep your room cool (18–20°C), avoid screens 1 hour before bed, and try magnesium-rich foods. Log sleep quality to share with your doctor.</p>
           </div>
         </div>
         <div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">
-            <h3 style="color:#7A4B1A;margin-bottom:.7rem">😔 Mood &amp; Brain Fog</h3>
+            <h3 style="color:#514659;margin-bottom:.7rem">😔 Mood &amp; Brain Fog</h3>
             <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Estrogen withdrawal affects serotonin. Mood swings, irritability, and forgetfulness are real and valid. <a href="chat.html" style="color:var(--pri)">Talk to Aura AI →</a> or use the breathing exercises in Resources.</p>
           </div>
           <div style="background:var(--lav-fill);border-radius:14px;padding:1.3rem;margin-bottom:1rem">

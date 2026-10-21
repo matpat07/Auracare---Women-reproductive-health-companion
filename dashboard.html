@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="UTF-8"/>
 <title>Dashboard — Aura Care</title>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="pastel.css"/>
+<script src="ui.js" defer></script>
 </head>
 <body class="app">
 <aside class="sidebar">
@@ -22,17 +25,11 @@
 </aside>
 
 <main class="content">
-  <header class="topbar">
-    <div>
-      <h1>Hi, Sister 💜</h1>
-      <p class="muted">How are you feeling today?</p>
-    </div>
-    <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
-      <div class="streak-badge" id="cyclePhaseBadge" style="cursor:pointer" onclick="location.href='cycle.html'">🌙 Log cycle →</div>
-      <div class="streak-badge">🔥 <span id="streak">7</span>-day streak</div>
-    </div>
-  </header>
-
+  <header class="dashboard-heading"><div><p class="eyebrow">YOUR WELLNESS, YOUR WAY</p><h1>A little care, just for you <span class="heading-flower">&#10047;</span></h1><p class="muted">A softer space to understand your body and feel more like yourself.</p></div><a class="avatar" href="lifestage.html" aria-label="Choose your life stage">Y</a></header>
+  <section class="welcome-card"><div><span class="pill">&#10023; A MOMENT FOR YOU</span><h2>Every phase of you<br/>deserves a little love.</h2><p>Listen to your body. Find your rhythm.<br/>We are here for every step of your journey.</p><a class="btn-primary" href="cycle.html">Check in with yourself <span aria-hidden="true">&#8599;</span></a></div><div class="bloom" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><i></i></div><div class="hero-note">Your body. Your pace. Your care.</div></section>
+  <section class="care-section" aria-labelledby="care-title"><div class="section-heading"><div><p class="eyebrow">MADE FOR YOUR EVERYDAY</p><h2 id="care-title">Your care, all in one place</h2></div><span class="muted">A little support for every chapter</span></div><div id="careGrid" class="care-grid"></div></section>
+  <div class="gentle-note"><span aria-hidden="true">&#8599;</span><p><strong>A gentle reminder</strong> You do not have to figure everything out today. Small check-ins are a lovely place to start.</p><a href="chat.html" aria-label="Talk to Aura">&#8599;</a></div>
+  <div class="section-heading"><h2>Your daily check-in</h2><span class="pill">Just for you</span></div>
   <!-- Health Score + Cycle snapshot -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-bottom:1.5rem">
     <div class="panel" style="display:flex;align-items:center;gap:1.2rem;margin-bottom:0;padding:1.2rem 1.5rem">
@@ -167,7 +164,7 @@
     const due = meds.filter(m => !m.lastTaken || new Date(m.lastTaken).toDateString() !== todayStr);
     medEl.innerHTML = due.length
       ? due.slice(0,3).map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid var(--lav-fill)">💊 ${m.name}${m.dose?' '+m.dose:''} — ${m.freq}</div>`).join('')
-      : '<div style="color:#2E7D5A">✅ All medicines taken today!</div>';
+      : '<div style="color:#514659">✅ All medicines taken today!</div>';
   }
 })();
 </script>

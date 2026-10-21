@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="UTF-8"/>
 <title>Health Hub — Aura Care</title>
 <link rel="stylesheet" href="style.css"/>
@@ -18,7 +19,7 @@ function switchTab(tabId) {
 </script>
 <style>
 /* Health Score */
-.score-ring{width:160px;height:160px;border-radius:50%;background:conic-gradient(#DCE8F5 0deg,#DCE8F5 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.score-ring{width:160px;height:160px;border-radius:50%;background:conic-gradient(#CFE3F8 0deg,#CFE3F8 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto}
 .score-inner{width:110px;height:110px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(36,52,77,.08)}
 .score-val{font-size:2.2rem;font-weight:800;color:var(--pri)}
 .score-lbl{font-size:.75rem;color:var(--muted);margin-top:.1rem}
@@ -31,13 +32,13 @@ function switchTab(tabId) {
 /* Vault */
 .vault-card{background:var(--lav-fill);border:1px solid var(--lav-border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center}
 .vault-card .doc-meta{display:flex;gap:.8rem;align-items:center}
-.vault-type{background:var(--mint-fill);color:#2E7D5A;border:1px solid var(--mint-border);padding:.2rem .7rem;border-radius:10px;font-size:.78rem;font-weight:600}
+.vault-type{background:var(--mint-fill);color:#514659;border:1px solid var(--mint-border);padding:.2rem .7rem;border-radius:10px;font-size:.78rem;font-weight:600}
 .del-btn{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.3rem .6rem;border-radius:6px}
-.del-btn:hover{background:var(--rose-fill);color:#C0392B}
+.del-btn:hover{background:var(--rose-fill);color:#514659}
 /* Med */
 .med-card{background:#fff;border:1px solid var(--lav-border);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;box-shadow:0 1px 6px rgba(36,52,77,.05)}
 .med-badge{background:var(--lav-fill);color:var(--pri);border:1px solid var(--lav-border);padding:.2rem .7rem;border-radius:10px;font-size:.78rem}
-.taken-btn{background:var(--mint-fill);color:#2E7D5A;border:1px solid var(--mint-border);padding:.4rem .9rem;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600}
+.taken-btn{background:var(--mint-fill);color:#514659;border:1px solid var(--mint-border);padding:.4rem .9rem;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600}
 .taken-btn:hover{background:var(--mint-border);color:#fff}
 /* Nutrition */
 .phase-card{background:var(--purp-fill);border:1px solid var(--purp-border);border-radius:14px;padding:1.3rem;margin-bottom:1rem}
@@ -57,6 +58,8 @@ input[type="time"],input[type="date"],select{color-scheme:light}
 .metric-card{background:#fff;border:1px solid var(--lav-border);border-radius:14px;padding:1rem;text-align:center;box-shadow:0 1px 6px rgba(36,52,77,.05)}
 .metric-val{font-size:1.6rem;font-weight:700;color:var(--pri)}
 </style>
+<link rel="stylesheet" href="pastel.css"/>
+<script src="ui.js" defer></script>
 </head>
 <body class="app">
 <aside class="sidebar">

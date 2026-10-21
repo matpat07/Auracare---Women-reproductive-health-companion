@@ -1,44 +1,32 @@
-/* ============================================================
-   Aura Care — PPT-Matched Design System
-   Palette source: aURA-cARE-fINAL.pptx
-   ─────────────────────────────────────────────────────────
-   Soft Lavender  #DCE8F5 fill / #7FA6CC border
-   Soft Purple    #E3DBF0 fill / #A491C7 border
-   Soft Mint      #D8F0E4 fill / #7FC4A0 border
-   Soft Peach     #FBE6D4 fill / #E3A868 border
-   Soft Rose      #F6DCE1 fill / #D68CA0 border
-   Text           #24344D  (dark navy — never pure black)
-   Primary blue   #0070C0  (ONLY saturated color in the deck)
-   ============================================================ */
-
+/* Legacy component layouts. Shared AuraCare tokens and pastel theme: pastel.css. */
 :root {
   /* Backgrounds */
-  --bg:    #F7F4FC;
-  --bg2:   #EDE7F6;
+  --bg:    #D8C7F5;
+  --bg2:   #D8C7F5;
 
   /* Card surfaces */
   --card:  #FFFFFF;
-  --card2: #F5F0FB;
+  --card2: #D8C7F5;
 
   /* PPT accent fills */
-  --lav-fill:   #DCE8F5; --lav-border:   #7FA6CC;
-  --purp-fill:  #E3DBF0; --purp-border:  #A491C7;
-  --mint-fill:  #D8F0E4; --mint-border:  #7FC4A0;
-  --peach-fill: #FBE6D4; --peach-border: #E3A868;
-  --rose-fill:  #F6DCE1; --rose-border:  #D68CA0;
+  --lav-fill:   #CFE3F8; --lav-border:   #CFE3F8;
+  --purp-fill:  #D8C7F5; --purp-border:  #D8C7F5;
+  --mint-fill:  #CDEBDD; --mint-border:  #CDEBDD;
+  --peach-fill: #FFD9C7; --peach-border: #FFD9C7;
+  --rose-fill:  #F8C8DC; --rose-border:  #F8C8DC;
 
   /* Semantic aliases */
-  --pri:    #0070C0;       /* ONLY saturated — PPT footer blue */
-  --pri-dk: #005A9E;       /* hover darkening */
-  --acc:    #7FC4A0;       /* mint accent */
-  --pink:   #D68CA0;       /* rose accent */
-  --text:   #24344D;       /* dark navy */
-  --muted:  #6B7E96;       /* medium slate */
-  --danger: #C0392B;       /* kept for crisis — used sparingly */
+  --pri:    #514659;       /* ONLY saturated — PPT footer blue */
+  --pri-dk: #514659;       /* hover darkening */
+  --acc:    #CDEBDD;       /* mint accent */
+  --pink:   #F8C8DC;       /* rose accent */
+  --text:   #514659;       /* dark navy */
+  --muted:  #514659;       /* medium slate */
+  --danger: #514659;       /* kept for crisis — used sparingly */
 
   /* Gradients */
-  --grad:  linear-gradient(135deg, #0070C0, #A491C7);  /* blue → soft purple, visible on light bg */
-  --grad2: linear-gradient(135deg, #0070C0, #5B9BD5);  /* blue → lighter blue for buttons */
+  --grad:  linear-gradient(135deg, #514659, #D8C7F5);  /* blue → soft purple, visible on light bg */
+  --grad2: linear-gradient(135deg, #514659, #CFE3F8);  /* blue → lighter blue for buttons */
 
   /* Utility */
   --shadow: 0 2px 16px rgba(36, 52, 77, .08);
@@ -97,7 +85,7 @@ a:hover { text-decoration: underline; }
    LANDING PAGE
    ════════════════════════════════════════════ */
 .landing {
-  background: linear-gradient(160deg, #EDE7F6 0%, #F5F0FB 40%, #D8F0E4 100%);
+  background: linear-gradient(160deg, #D8C7F5 0%, #D8C7F5 40%, #CDEBDD 100%);
 }
 .navbar {
   display: flex;
@@ -129,9 +117,9 @@ a:hover { text-decoration: underline; }
 /* Hero orbs — pastel, blurred */
 .hero-visual { position: relative; height: 420px; }
 .orb { position: absolute; border-radius: 50%; filter: blur(55px); opacity: .55; }
-.orb1 { width: 260px; height: 260px; background: #C7B8EA; top: 20px; left: 40px; }
-.orb2 { width: 200px; height: 200px; background: #A9E1D1; bottom: 20px; right: 20px; }
-.orb3 { width: 160px; height: 160px; background: #F6DCE1; top: 120px; right: 120px; }
+.orb1 { width: 260px; height: 260px; background: #D8C7F5; top: 20px; left: 40px; }
+.orb2 { width: 200px; height: 200px; background: #CDEBDD; bottom: 20px; right: 20px; }
+.orb3 { width: 160px; height: 160px; background: #F8C8DC; top: 120px; right: 120px; }
 .card.floating {
   position: absolute; top: 40%; left: 30%;
   background: #fff;
@@ -218,7 +206,7 @@ footer {
   display: block;
   padding: .8rem 1rem;
   background: var(--rose-fill);
-  color: #C0392B;
+  color: #514659;
   border: 1px solid var(--rose-border);
   border-radius: 10px;
   font-weight: 700;
@@ -272,7 +260,7 @@ footer {
   transition: all .2s;
 }
 .mood-picker button:hover { border-color: var(--lav-border); transform: scale(1.1); }
-.mood-picker button.selected { border-color: var(--pri); background: #E8F3FA; }
+.mood-picker button.selected { border-color: var(--pri); background: #CFE3F8; }
 
 /* Textareas / inputs */
 #moodNote, .post-box textarea {
@@ -434,7 +422,7 @@ footer {
 .breathe-modal .breathe-circle {
   width: 180px; height: 180px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #DCE8F5, #7FC4A0);
+  background: linear-gradient(135deg, #CFE3F8, #CDEBDD);
   margin: 2rem auto;
   animation: breathe 8s ease-in-out infinite;
 }
@@ -455,7 +443,7 @@ footer {
   font-family: inherit;
 }
 .symptom-btn:hover  { border-color: var(--purp-border); background: var(--purp-fill); }
-.symptom-btn.active { border-color: var(--pri); background: #E8F3FA; color: var(--pri); font-weight: 600; }
+.symptom-btn.active { border-color: var(--pri); background: #CFE3F8; color: var(--pri); font-weight: 600; }
 
 /* ─── Community ─── */
 .post-actions { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -478,7 +466,7 @@ footer {
 .post-head { display: flex; gap: .8rem; align-items: center; margin-bottom: .7rem; flex-wrap: wrap; }
 .tag {
   background: var(--mint-fill);
-  color: #2E7D5A;
+  color: #514659;
   border: 1px solid var(--mint-border);
   padding: .2rem .7rem;
   border-radius: 10px;
