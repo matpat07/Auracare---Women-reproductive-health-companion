@@ -75,3 +75,12 @@ node --test tests/home.test.cjs
 ```
 
 These tests cover state and lifecycle behavior using a DOM test harness. They do not substitute for checking rendering at 375px, 768px, and 1440px in both themes, plus reduced-motion and pointer/touch modes, in a browser.
+
+
+### Landing-page experiences
+
+`home-experiences.js` adds a three-slide care-idea carousel, a single continuous ticker, a chapter-dependent focus selector, a native modal with a matching care-tool link, and an instant scripted chat widget. The existing FAQ uses native accessible accordion controls. The hero now layers scroll parallax over its pointer response. Native progress bars reflect planner choices and breathing phases. Session counters report unique care ideas viewed and completed breathing moments; they are not invented live community metrics.
+
+Carousel auto-play stops off-screen, on hover or keyboard focus, when the document is hidden, and when motion is paused or reduced. Manual navigation pauses auto-play until the user restarts it. Chat messages are bounded to 40 entries, kept only in page memory, and rendered as text. The chatbot does not connect to a live AI model or send messages to a server.
+
+Validation: `node --test tests/home.test.cjs` covers the original motion lifecycle plus carousel pause behavior, dependent dropdown resets, modal destinations, safe chat rendering, and new experience cleanup. Rendered browser/device checks remain separate.

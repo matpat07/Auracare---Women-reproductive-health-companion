@@ -22,10 +22,11 @@ input[type="date"]:focus,input[type="number"]:focus,textarea:focus{outline:none;
 </style>
 <link rel="stylesheet" href="pastel.css"/>
 <script src="ui.js" defer></script>
+<link rel="icon" type="image/png" href="Aura_Care_Logo.png">
 </head>
 <body class="app">
 <aside class="sidebar">
-  <div class="logo">🌸 <span>Aura</span></div>
+  <a class="logo app-brand" href="dashboard.html" aria-label="AuraCare home"><img src="Aura_Care_Logo.png" alt="" width="44" height="44"><span>AuraCare</span></a>
   <nav>
     <a href="dashboard.html">🏠 Dashboard</a>
     <a href="chat.html">💬 Companion</a>
@@ -95,7 +96,7 @@ input[type="date"]:focus,input[type="number"]:focus,textarea:focus{outline:none;
   <section class="panel">
     <h2>📝 Log Today's Symptoms</h2>
     <p class="muted" style="margin-bottom:.3rem">Select all that apply — helps correlate symptoms with your cycle phase over time.</p>
-    <div class="symptom-grid" id="symptomGrid">
+    <div class="symptom-grid" id="symptomGrid" role="group" aria-label="Today's symptoms, select all that apply">
       <button class="symptom-btn" data-sym="cramps">🔴 Cramps</button>
       <button class="symptom-btn" data-sym="bloating">💧 Bloating</button>
       <button class="symptom-btn" data-sym="headache">🤕 Headache</button>

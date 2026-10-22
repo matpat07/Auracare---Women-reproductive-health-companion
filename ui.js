@@ -28,12 +28,12 @@
     ['Emergency SOS','Support when it matters','sos.html','sos','pink']
   ];
   const grid = document.getElementById('careGrid');
-  if (grid) grid.innerHTML = features.map(([title,desc,url,type,color]) => `<a class="care-tile" href="${url}"><span class="tile-icon ${color}">${icon(type)}</span><strong>${title}</strong><span>${desc}</span></a>`).join('');
+  if (grid) grid.innerHTML = features.map(([title,desc,url,type,color]) => `<a class="care-tile fluid-feature ${color}" href="${url}"><span class="tile-icon">${icon(type)}</span><strong>${title}</strong><span>${desc}</span></a>`).join('');
   const sidebar = document.querySelector('.sidebar');
   const page = location.pathname.split('/').pop() || 'index.html';
   if (sidebar) {
     const nav = [['dashboard.html','Overview','home'],['cycle.html','My cycle','cycle'],['lifestage.html','Life stages','flower'],['chat.html','Aura assistant','chat'],['health.html','My health','vault'],['resources.html','Mind & wellness','leaf'],['community.html','Sisterhood','people']];
-    sidebar.innerHTML = `<a class="brand" href="dashboard.html">${icon('flower')}<span>AuraCare<small>IN EVERY PHASE, WITH YOU</small></span></a><p class="nav-caption">YOUR SPACE</p><nav aria-label="Main navigation">${nav.map(([url,title,type])=>`<a href="${url}" ${page===url?'class="active" aria-current="page"':''}>${icon(type)}${title}</a>`).join('')}</nav><div class="sidebar-note">${icon('heart')}<p>A little kinder to yourself.<br/>A little closer to you.</p></div><a class="sos-link" href="sos.html">${icon('sos')} Emergency SOS <span>↗</span></a><p class="device-note">Your entries stay on this device</p>`;
+    sidebar.innerHTML = `<a class="brand" href="dashboard.html"><img class="brand-logo" src="Aura_Care_Logo.png" alt="" width="48" height="48" decoding="async"><span>AuraCare<small>IN EVERY PHASE, WITH YOU</small></span></a><p class="nav-caption">YOUR SPACE</p><nav aria-label="Main navigation">${nav.map(([url,title,type])=>`<a href="${url}" ${page===url?'class="active" aria-current="page"':''}>${icon(type)}${title}</a>`).join('')}</nav><div class="sidebar-note">${icon('heart')}<p>A little kinder to yourself.<br/>A little closer to you.</p></div><a class="sos-link" href="sos.html">${icon('sos')} Emergency SOS <span>↗</span></a><p class="device-note">Your entries stay on this device</p>`;
   }
   if (page !== 'dashboard.html' && document.querySelector('.content')) {
     const back = document.createElement('a'); back.className='back-link'; back.href='dashboard.html'; back.textContent='← Back to your space'; document.querySelector('.content').prepend(back);

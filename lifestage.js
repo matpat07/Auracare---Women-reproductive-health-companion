@@ -7,11 +7,17 @@
 
 /* -------- Stage Selector -------- */
 function setStage(stage) {
-  document.querySelectorAll('.stage-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.stage-card').forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-pressed', 'false');
+  });
   document.querySelectorAll('.stage-content').forEach(c => c.classList.remove('visible'));
   const card = document.querySelector(`.stage-card[data-stage="${stage}"]`);
   const content = document.getElementById('stage-' + stage);
-  if (card) card.classList.add('active');
+  if (card) {
+    card.classList.add('active');
+    card.setAttribute('aria-pressed', 'true');
+  }
   if (content) content.classList.add('visible');
   // Save preference
   localStorage.setItem('aura_lifestage', stage);

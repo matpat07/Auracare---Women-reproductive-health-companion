@@ -147,7 +147,7 @@
   const breathFluid = new FluidSurface($('#breathPanel'));
   disposers.push(() => chapterFluid.stop(), () => breathFluid.stop());
 
-  // Life-stage state engine: roving tab focus, arrows and one stable panel.
+  // Chapter carousel: a recycled, accessible slide with directional transitions.
   const chapters = [
     { key: 'teen', label: 'A GENTLE BEGINNING', title: ['Big questions.', 'A safe place to start.'], description: 'Get to know your changing body with simple explainers, first-period essentials, and reassurance at your own pace.', color: 'pink' },
     { key: 'pcos', label: 'GET TO KNOW YOUR PATTERNS', title: ['Your patterns.', 'Your own story.'], description: 'Keep track of cycle changes, skin, and energy. Bring what you notice, and your questions, to a conversation with your clinician.', color: 'mint' },
@@ -156,9 +156,25 @@
   ];
   const tabs = $$('[data-chapter]');
   $('.chapter-tabs').hidden = false;
-  $('.step-arrows').hidden = false;
+  $('#chapterControls').hidden = false;
   let chapterIndex = 0;
-  function selectChapter(index, moveFocus = false) {
+  let chapterTimer = null, chapterPlaying = true, chapterHovered = false;
+  let chapterFocused = false, chapterInView = false, chapterAnimation = null;
+  let chapterActive = true;
+  const chapterCarousel = $('#chapterCarousel');
+  function scheduleChapters() {
+    clearTimeout(chapterTimer); chapterTimer = null;
+    const allowed = motion.enabled && chapterActive && !document.hidden;
+    $('#chapterPlay').disabled = !motion.enabled;
+    $('#chapterPlay').textContent = !motion.enabled ? 'Auto-play off' : chapterPlaying ? 'Pause slideshow' : 'Play slideshow';
+    $('#chapterPlay').setAttribute('aria-pressed', String(!chapterPlaying || !motion.enabled));
+    const running = allowed && chapterPlaying && chapterInView && !chapterHovered && !chapterFocused;
+    $('#chapterCount').setAttribute('aria-live', running ? 'off' : 'polite');
+    if (running) chapterTimer = setTimeout(() => selectChapter(chapterIndex + 1, false, false), 6500);
+  }
+  function selectChapter(index, moveFocus = false, manual = true) {
+    const direction = index >= chapterIndex ? 1 : -1;
+    if (manual) chapterPlaying = false;
     chapterIndex = (index + chapters.length) % chapters.length;
     const chapter = chapters[chapterIndex];
     tabs.forEach((tab, i) => {
@@ -175,8 +191,18 @@
     $('#chapterDescription').textContent = chapter.description;
     $('#chapterLink').href = `lifestage.html#${chapter.key}`;
     $('#chapterCount').textContent = `${String(chapterIndex + 1).padStart(2, '0')} / 04`;
-    chapterFluid.shift(chapterIndex + 1, $('#chapterContent'));
+    $('#chapterSlideName').textContent = tabs[chapterIndex].textContent.replace('↗', '').trim();
+    panel.setAttribute('aria-label', `${chapter.label}, slide ${chapterIndex + 1} of 4`);
+    chapterFluid.shift(chapterIndex + 1);
+    chapterAnimation?.cancel(); chapterAnimation = null;
+    if (motion.enabled && motion.visible && $('#chapterSlideBody').animate) {
+      chapterAnimation = $('#chapterSlideBody').animate([
+        { opacity: 0, transform: `translateX(${direction * 65}%)` },
+        { opacity: 1, transform: 'translateX(0)' }
+      ], { duration: 280, easing: 'cubic-bezier(.23,1,.32,1)' });
+    }
     if (moveFocus) tabs[chapterIndex].focus();
+    scheduleChapters();
   }
   tabs.forEach((tab, index) => {
     listen(tab, 'click', () => { if (index !== chapterIndex) selectChapter(index); });
@@ -192,14 +218,50 @@
   });
   listen($('#chapterPrev'), 'click', () => selectChapter(chapterIndex - 1));
   listen($('#chapterNext'), 'click', () => selectChapter(chapterIndex + 1));
+  listen($('#chapterPlay'), 'click', () => { chapterPlaying = !chapterPlaying; scheduleChapters(); });
+  listen(chapterCarousel, 'pointerenter', () => { chapterHovered = true; scheduleChapters(); });
+  listen(chapterCarousel, 'pointerleave', () => { chapterHovered = false; scheduleChapters(); });
+  listen(chapterCarousel, 'focusin', () => { chapterFocused = true; scheduleChapters(); });
+  listen(chapterCarousel, 'focusout', () => {
+    queueMicrotask(() => { chapterFocused = chapterCarousel.contains(document.activeElement); scheduleChapters(); });
+  });
+  let swipe = null, lastSwipe = -1000;
+  listen($('#chapterPanel'), 'pointerdown', event => {
+    if (event.pointerType === 'touch' || event.pointerType === 'pen') swipe = { x: event.clientX, y: event.clientY };
+  }, { passive: true });
+  listen($('#chapterPanel'), 'pointerup', event => {
+    if (!swipe) return;
+    const dx = event.clientX - swipe.x, dy = event.clientY - swipe.y; swipe = null;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      lastSwipe = performance.now(); selectChapter(chapterIndex + (dx < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+  listen($('#chapterPanel'), 'pointercancel', () => { swipe = null; });
+  listen($('#chapterPanel'), 'click', event => {
+    if (performance.now() - lastSwipe < 350) { event.preventDefault(); event.stopPropagation(); }
+  }, { capture: true });
+  let chapterObserver = null;
+  if ('IntersectionObserver' in window) {
+    chapterObserver = new IntersectionObserver(entries => { chapterInView = entries[0].isIntersecting; scheduleChapters(); }, { threshold: .2 });
+    chapterObserver.observe(chapterCarousel);
+  }
+  onMotion(() => { scheduleChapters(); if (!motion.enabled) chapterAnimation?.cancel(); });
+  listen(document, 'visibilitychange', scheduleChapters);
+  listen(window, 'pagehide', () => { chapterActive = false; clearTimeout(chapterTimer); chapterAnimation?.cancel(); });
+  listen(window, 'pageshow', () => { chapterActive = true; queueMicrotask(scheduleChapters); });
+  disposers.push(() => { clearTimeout(chapterTimer); chapterAnimation?.cancel(); chapterObserver?.disconnect(); });
 
   // Breathing is a user-started 24-second session, not an autoplay animation.
   // Deadline-based steps avoid drift and reset safely if the tab is hidden.
   const breath = { state: 'idle', step: 0, deadline: 0, timer: null };
+  let completedBreaths = 0;
   const breathSteps = $$('.breath-steps li');
   function renderBreath() {
     const running = breath.state === 'running';
     const complete = breath.state === 'complete';
+    const seconds = complete ? 24 : running ? breath.step * 4 : 0;
+    $('#breathProgress').value = seconds;
+    $('#breathProgressLabel').textContent = `${seconds} of 24 seconds`;
     const inhale = breath.step % 2 === 0;
     const phase = running ? (inhale ? 'inhale' : 'exhale') : breath.state;
     $('#breathPanel').dataset.state = phase;
@@ -220,6 +282,7 @@
   function finishBreath(complete = false) {
     clearTimeout(breath.timer); breath.timer = null;
     breath.state = complete ? 'complete' : 'idle'; breath.step = 0;
+    if (complete) { completedBreaths++; $('#breathsCount').textContent = String(completedBreaths); }
     renderBreath();
   }
   function scheduleBreath() {
@@ -325,7 +388,9 @@
     pointer.smoothX += (pointer.x - pointer.smoothX) * lerp;
     pointer.smoothY += (pointer.y - pointer.smoothY) * lerp;
     layers.forEach(({ el, depth }) => {
-      const x = pointer.smoothX * depth, y = pointer.smoothY * depth;
+      const scrollOffset = clamp(window.scrollY - bounds.pageTop, 0, bounds.height);
+      const x = pointer.smoothX * depth;
+      const y = pointer.smoothY * depth + scrollOffset * (Math.abs(depth) > 10 ? .16 : .04);
       const sign = Math.sign(depth);
       el.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) rotateX(${(-pointer.smoothY * 1.5 * sign).toFixed(2)}deg) rotateY(${(pointer.smoothX * 2 * sign).toFixed(2)}deg) scale(${(1 + Math.abs(pointer.smoothX) * .005).toFixed(4)})`;
     });

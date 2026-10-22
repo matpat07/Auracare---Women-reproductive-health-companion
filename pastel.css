@@ -11,6 +11,9 @@
   --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px; --space-5:48px;
 }
 body {font-family:var(--font-body);color:var(--text);background:var(--bg);font-size:14px;line-height:1.65}
+.sidebar .brand>.brand-logo { width:48px; height:48px; object-fit:contain; flex:0 0 auto; }
+.app-brand { display:flex; gap:10px; align-items:center; color:var(--text); }
+.app-brand img { width:44px; height:44px; object-fit:contain; }
 [hidden] {display:none!important}
 .screen-example {background:linear-gradient(115deg,var(--peach),#fff,var(--lavender));padding:26px 30px;border-radius:24px;margin-bottom:24px}.screen-example h2 {margin:8px 0}.screen-example strong {font-size:13px;font-weight:500}
 h1,h2 {font-family:var(--font-heading);font-weight:400!important;letter-spacing:-.035em}
@@ -47,3 +50,460 @@ input,textarea,select {max-width:100%;border-radius:14px!important;color:var(--t
 @media(max-width:1150px){.care-grid {grid-template-columns:repeat(4,minmax(0,1fr))}.bloom {right:45px;opacity:.6}.hero-note {right:25px;font-size:12px}.app {grid-template-columns:205px minmax(0,1fr)}.sidebar {padding-inline:12px}.section-heading>.muted {display:none}}
 @media(max-width:760px){.app {display:block}.sidebar {position:relative;height:auto;padding:16px 20px;display:block;border-bottom:1px solid #eee9eb}.brand {margin:0;font-size:25px}.brand small {font-size:7px}.sidebar nav {display:flex;flex-direction:row;overflow:auto;margin-top:18px;gap:6px;padding-bottom:4px}.sidebar nav a {white-space:nowrap;min-height:44px;padding:10px;font-size:11px;gap:7px}.sidebar nav svg {width:16px}.nav-caption,.sidebar-note,.device-note {display:none}.sos-link {position:absolute;right:18px;top:18px;padding:10px;font-size:10px}.sos-link svg {width:15px}.sos-link span {display:none}.content {padding:25px 20px}.dashboard-heading h1 {font-size:29px!important;line-height:1.25}.heading-flower {display:none}.dashboard-heading .muted {font-size:12px}.avatar {display:none}.welcome-card {padding:25px;min-height:280px}.welcome-card h2 {font-size:32px}.bloom {right:-30px;top:85px;transform:scale(.7);opacity:.45}.hero-note {display:none}.care-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 8px}.care-tile strong {font-size:11px}.tile-icon {width:64px;height:64px}.section-heading h2 {font-size:24px}.grid-2 {grid-template-columns:1fr!important}.gentle-note {padding:18px}.stage-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}.hub-tabs {flex-wrap:wrap}.topbar h1 {font-size:30px!important}.chat-input {flex-wrap:wrap}.chat-input input {min-width:0;flex:1}.landing .hero {margin:12px;padding:26px}.navbar {padding:16px}.nav-links {gap:12px}.nav-links a {font-size:12px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Main application only: organic feature navigation inside dashboard #careGrid.
+   The landing page uses home.css and keeps its existing feature cards. */
+#careGrid { gap: 24px 16px; }
+#careGrid .fluid-feature {
+  position: relative;
+  min-width: 0;
+  min-height: 200px;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 16px;
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: var(--text);
+  text-decoration: none;
+  transform: none;
+  transition: border-radius 250ms cubic-bezier(.23, 1, .32, 1), transform 200ms cubic-bezier(.23, 1, .32, 1);
+}
+#careGrid .fluid-feature.pink { background: var(--blush); }
+#careGrid .fluid-feature.lavender { background: var(--lavender); }
+#careGrid .fluid-feature.peach { background: var(--peach); }
+#careGrid .fluid-feature.mint { background: var(--mint); }
+#careGrid .fluid-feature.blue { background: var(--baby-blue); }
+/* Unique contours in the existing feature order; color assignments stay above. */
+/* Cycle Tracking */
+#careGrid .fluid-feature:nth-child(1) {
+  border-radius: 65% 35% 47% 53% / 42% 38% 62% 58%;
+}
+#careGrid .fluid-feature:nth-child(1):hover,
+#careGrid .fluid-feature:nth-child(1):focus-visible {
+  border-radius: 58% 42% 38% 62% / 48% 35% 65% 52%;
+}
+/* Teen & First Period */
+#careGrid .fluid-feature:nth-child(2) {
+  border-radius: 42% 58% 31% 69% / 57% 43% 37% 63%;
+}
+#careGrid .fluid-feature:nth-child(2):hover,
+#careGrid .fluid-feature:nth-child(2):focus-visible {
+  border-radius: 36% 64% 40% 60% / 49% 51% 32% 68%;
+}
+/* PCOS Insights */
+#careGrid .fluid-feature:nth-child(3) {
+  border-radius: 34% 66% 58% 42% / 41% 32% 68% 59%;
+}
+#careGrid .fluid-feature:nth-child(3):hover,
+#careGrid .fluid-feature:nth-child(3):focus-visible {
+  border-radius: 42% 58% 65% 35% / 35% 41% 59% 65%;
+}
+/* Pregnancy Mode */
+#careGrid .fluid-feature:nth-child(4) {
+  border-radius: 62% 38% 28% 72% / 48% 39% 61% 52%;
+}
+#careGrid .fluid-feature:nth-child(4):hover,
+#careGrid .fluid-feature:nth-child(4):focus-visible {
+  border-radius: 55% 45% 35% 65% / 42% 47% 53% 58%;
+}
+/* Menopause Mode */
+#careGrid .fluid-feature:nth-child(5) {
+  border-radius: 36% 64% 51% 49% / 29% 56% 44% 71%;
+}
+#careGrid .fluid-feature:nth-child(5):hover,
+#careGrid .fluid-feature:nth-child(5):focus-visible {
+  border-radius: 43% 57% 59% 41% / 35% 49% 51% 65%;
+}
+/* AI Health Assistant */
+#careGrid .fluid-feature:nth-child(6) {
+  border-radius: 71% 29% 55% 45% / 43% 61% 39% 57%;
+}
+#careGrid .fluid-feature:nth-child(6):hover,
+#careGrid .fluid-feature:nth-child(6):focus-visible {
+  border-radius: 63% 37% 48% 52% / 36% 55% 45% 64%;
+}
+/* Health Vault */
+#careGrid .fluid-feature:nth-child(7) {
+  border-radius: 39% 61% 68% 32% / 62% 34% 66% 38%;
+}
+#careGrid .fluid-feature:nth-child(7):hover,
+#careGrid .fluid-feature:nth-child(7):focus-visible {
+  border-radius: 46% 54% 61% 39% / 55% 42% 58% 45%;
+}
+/* Mental Wellness */
+#careGrid .fluid-feature:nth-child(8) {
+  border-radius: 57% 43% 33% 67% / 32% 64% 36% 68%;
+}
+#careGrid .fluid-feature:nth-child(8):hover,
+#careGrid .fluid-feature:nth-child(8):focus-visible {
+  border-radius: 64% 36% 41% 59% / 39% 57% 43% 61%;
+}
+/* Nutrition & Fitness */
+#careGrid .fluid-feature:nth-child(9) {
+  border-radius: 31% 69% 44% 56% / 48% 37% 63% 52%;
+}
+#careGrid .fluid-feature:nth-child(9):hover,
+#careGrid .fluid-feature:nth-child(9):focus-visible {
+  border-radius: 39% 61% 36% 64% / 55% 31% 69% 45%;
+}
+/* Doctor Visit Summary */
+#careGrid .fluid-feature:nth-child(10) {
+  border-radius: 68% 32% 61% 39% / 35% 46% 54% 65%;
+}
+#careGrid .fluid-feature:nth-child(10):hover,
+#careGrid .fluid-feature:nth-child(10):focus-visible {
+  border-radius: 60% 40% 69% 31% / 42% 38% 62% 58%;
+}
+/* Emergency SOS */
+#careGrid .fluid-feature:nth-child(11) {
+  border-radius: 47% 53% 29% 71% / 65% 36% 64% 35%;
+}
+#careGrid .fluid-feature:nth-child(11):hover,
+#careGrid .fluid-feature:nth-child(11):focus-visible {
+  border-radius: 40% 60% 37% 63% / 57% 43% 57% 43%;
+}
+#careGrid .fluid-feature::before {
+  content: "";
+  position: absolute;
+  inset: -3px 4px 3px -2px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .18;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+#careGrid .fluid-feature .tile-icon {
+  width: 36px; height: 36px;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+#careGrid .fluid-feature strong { font-size: 14px; line-height: 1.3; max-width: 17ch; text-wrap: balance; }
+#careGrid .fluid-feature>span:last-child { font-size: 12px; line-height: 1.5; max-width: 18ch; color: var(--text); }
+#careGrid .fluid-feature:focus-visible { outline: 3px solid var(--text); outline-offset: 5px; }
+#careGrid .fluid-feature:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  #careGrid .fluid-feature,
+  #careGrid .fluid-feature::before { transition: none; }
+  #careGrid .fluid-feature:active { transform: none; }
+}
+@media (max-width: 760px) {
+  #careGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+  #careGrid .fluid-feature { min-height: 190px; padding: 30px 16px; }
+}
+@media (max-width: 370px) {
+  #careGrid { grid-template-columns: 1fr; }
+  #careGrid .fluid-feature { width: min(100%, 280px); justify-self: center; }
+}
+@media (forced-colors: active) {
+  #careGrid .fluid-feature { border-color: LinkText; }
+}
+
+/* Life Stages uses the same fluid material as the dashboard navigation. */
+#lifeStageGrid { gap: 22px 16px; }
+#lifeStageGrid .stage-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 250px;
+  padding: 30px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--stage-radius) !important;
+  background: var(--stage-fill) !important;
+  box-shadow: none;
+  transform: none;
+  color: var(--text);
+  transition: border-radius 250ms cubic-bezier(.23, 1, .32, 1), transform 200ms cubic-bezier(.23, 1, .32, 1);
+}
+#lifeStageGrid [data-stage="teen"] {
+  --stage-fill: var(--lavender);
+  --stage-radius: 42% 58% 31% 69% / 57% 43% 37% 63%;
+  --stage-hover: 36% 64% 40% 60% / 49% 51% 32% 68%;
+}
+#lifeStageGrid [data-stage="pcos"] {
+  --stage-fill: var(--mint);
+  --stage-radius: 34% 66% 58% 42% / 41% 32% 68% 59%;
+  --stage-hover: 42% 58% 65% 35% / 35% 41% 59% 65%;
+}
+#lifeStageGrid [data-stage="pregnancy"] {
+  --stage-fill: var(--peach);
+  --stage-radius: 62% 38% 28% 72% / 48% 39% 61% 52%;
+  --stage-hover: 55% 45% 35% 65% / 42% 47% 53% 58%;
+}
+#lifeStageGrid [data-stage="menopause"] {
+  --stage-fill: var(--baby-blue);
+  --stage-radius: 36% 64% 51% 49% / 29% 56% 44% 71%;
+  --stage-hover: 43% 57% 59% 41% / 35% 49% 51% 65%;
+}
+#lifeStageGrid [data-stage="skin"] {
+  --stage-fill: var(--blush);
+  --stage-radius: 57% 43% 33% 67% / 32% 64% 36% 68%;
+  --stage-hover: 64% 36% 41% 59% / 39% 57% 43% 61%;
+}
+#lifeStageGrid .stage-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px 4px 3px -2px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .18;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+#lifeStageGrid .stage-card .stage-icon { margin-bottom: 8px; }
+#lifeStageGrid .stage-card h3 { max-width: 18ch; text-wrap: balance; }
+#lifeStageGrid .stage-card p { max-width: 21ch; color: var(--text); }
+#lifeStageGrid .stage-card.active { outline: 2px solid var(--pri); outline-offset: 5px; }
+#lifeStageGrid .stage-card:hover,
+#lifeStageGrid .stage-card:focus-visible { border-radius: var(--stage-hover) !important; }
+#lifeStageGrid .stage-card:focus-visible { outline: 3px solid var(--text); outline-offset: 5px; }
+#lifeStageGrid .stage-card:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  #lifeStageGrid .stage-card { transition: none; }
+  #lifeStageGrid .stage-card:active { transform: none; }
+}
+@media (max-width: 760px) {
+  #lifeStageGrid .stage-card { min-height: 230px; padding: 28px 18px; }
+}
+@media (max-width: 370px) {
+  #lifeStageGrid { grid-template-columns: 1fr !important; }
+  #lifeStageGrid .stage-card { width: min(100%, 280px); justify-self: center; }
+}
+@media (forced-colors: active) {
+  #lifeStageGrid .stage-card { border-color: ButtonText; }
+}
+
+/* Compact fluid buttons for the cycle symptom multi-selector. */
+#symptomGrid { gap: 14px 12px; }
+#symptomGrid .symptom-btn {
+  position: relative;
+  min-width: 44px;
+  min-height: 76px;
+  padding: 16px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--symptom-shape);
+  background: var(--baby-blue);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: none;
+  transform: none;
+  transition: border-radius 250ms cubic-bezier(.23, 1, .32, 1), transform 200ms cubic-bezier(.23, 1, .32, 1);
+  --symptom-shape: 65% 35% 47% 53% / 42% 38% 62% 58%;
+  --symptom-hover: 58% 42% 38% 62% / 48% 35% 65% 52%;
+}
+#symptomGrid .symptom-btn:nth-child(6n + 2) {
+  --symptom-shape: 42% 58% 31% 69% / 57% 43% 37% 63%;
+  --symptom-hover: 36% 64% 40% 60% / 49% 51% 32% 68%;
+}
+#symptomGrid .symptom-btn:nth-child(6n + 3) {
+  --symptom-shape: 34% 66% 58% 42% / 41% 32% 68% 59%;
+  --symptom-hover: 42% 58% 65% 35% / 35% 41% 59% 65%;
+}
+#symptomGrid .symptom-btn:nth-child(6n + 4) {
+  --symptom-shape: 62% 38% 28% 72% / 48% 39% 61% 52%;
+  --symptom-hover: 55% 45% 35% 65% / 42% 47% 53% 58%;
+}
+#symptomGrid .symptom-btn:nth-child(6n + 5) {
+  --symptom-shape: 36% 64% 51% 49% / 29% 56% 44% 71%;
+  --symptom-hover: 43% 57% 59% 41% / 35% 49% 51% 65%;
+}
+#symptomGrid .symptom-btn:nth-child(6n) {
+  --symptom-shape: 71% 29% 55% 45% / 43% 61% 39% 57%;
+  --symptom-hover: 63% 37% 48% 52% / 36% 55% 45% 64%;
+}
+#symptomGrid .symptom-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px 3px 2px -1px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .16;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+#symptomGrid .symptom-btn:hover,
+#symptomGrid .symptom-btn:focus-visible { border-radius: var(--symptom-hover); }
+#symptomGrid .symptom-btn.active {
+  background: var(--blush);
+  outline: 2px solid var(--pri);
+  outline-offset: 3px;
+  font-weight: 600;
+}
+#symptomGrid .symptom-btn.active::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 22%;
+  width: 5px;
+  height: 9px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+#symptomGrid .symptom-btn:focus-visible { outline: 3px solid var(--text); outline-offset: 4px; }
+#symptomGrid .symptom-btn:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  #symptomGrid .symptom-btn { transition: none; }
+  #symptomGrid .symptom-btn:active { transform: none; }
+}
+@media (max-width: 760px) {
+  #symptomGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #symptomGrid .symptom-btn { padding-inline: 14px; }
+}
+@media (forced-colors: active) {
+  #symptomGrid .symptom-btn { border-color: ButtonText; }
+}
+
+/* Wellness resource cards: fluid shapes with real exercise actions inside. */
+#resGrid { gap: 26px 22px; align-items: stretch; }
+#resGrid .res-card {
+  position: relative;
+  min-width: 0;
+  min-height: 330px;
+  padding: 38px 32px;
+  border: 1px solid transparent !important;
+  border-radius: var(--resource-shape) !important;
+  background: var(--resource-fill);
+  color: var(--text);
+  text-align: center;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: none;
+  transition: border-radius 250ms cubic-bezier(.23, 1, .32, 1);
+}
+#resGrid .res-card:nth-child(1) {
+  --resource-fill: var(--baby-blue);
+  --resource-shape: 65% 35% 47% 53% / 42% 38% 62% 58%;
+  --resource-hover: 58% 42% 38% 62% / 48% 35% 65% 52%;
+}
+#resGrid .res-card:nth-child(2) {
+  --resource-fill: var(--mint);
+  --resource-shape: 42% 58% 31% 69% / 57% 43% 37% 63%;
+  --resource-hover: 36% 64% 40% 60% / 49% 51% 32% 68%;
+}
+#resGrid .res-card:nth-child(3) {
+  --resource-fill: var(--blush);
+  --resource-shape: 34% 66% 58% 42% / 41% 32% 68% 59%;
+  --resource-hover: 42% 58% 65% 35% / 35% 41% 59% 65%;
+}
+#resGrid .res-card:nth-child(4) {
+  --resource-fill: var(--peach);
+  --resource-shape: 62% 38% 28% 72% / 48% 39% 61% 52%;
+  --resource-hover: 55% 45% 35% 65% / 42% 47% 53% 58%;
+}
+#resGrid .res-card:nth-child(5) {
+  --resource-fill: var(--lavender);
+  --resource-shape: 36% 64% 51% 49% / 29% 56% 44% 71%;
+  --resource-hover: 43% 57% 59% 41% / 35% 49% 51% 65%;
+}
+#resGrid .res-card:nth-child(6) {
+  --resource-fill: var(--baby-blue);
+  --resource-shape: 71% 29% 55% 45% / 43% 61% 39% 57%;
+  --resource-hover: 63% 37% 48% 52% / 36% 55% 45% 64%;
+}
+#resGrid .res-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px 4px 3px -2px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .18;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+#resGrid .res-card .thumb { margin-bottom: 10px; }
+#resGrid .res-card h3 { margin-bottom: 10px; text-wrap: balance; }
+#resGrid .res-card p { min-height: 4.8em; margin-bottom: 18px; color: var(--text); line-height: 1.6; }
+#resGrid .res-card .btn-primary {
+  position: relative;
+  min-width: 80px;
+  min-height: 44px;
+  padding: 10px 22px;
+  background: var(--card);
+  border: 1px solid var(--lav-border);
+  box-shadow: none;
+  transform: none;
+  transition: transform 200ms cubic-bezier(.23, 1, .32, 1);
+}
+#resGrid .res-card:hover,
+#resGrid .res-card:focus-within { border-radius: var(--resource-hover) !important; }
+#resGrid .res-card .btn-primary:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  #resGrid .res-card, #resGrid .res-card .btn-primary { transition: none; }
+  #resGrid .res-card .btn-primary:active { transform: none; }
+}
+@media (max-width: 760px) {
+  #resGrid { grid-template-columns: 1fr; gap: 25px; }
+  #resGrid .res-card { width: min(100%, 380px); justify-self: center; padding: 35px 30px; }
+}
+@media (forced-colors: active) {
+  #resGrid .res-card { border-color: CanvasText !important; }
+}
+
+/* Small fluid controls: chat prompts and the dashboard mood picker. */
+.app .quick-replies, .app .mood-picker { gap: 14px 12px; }
+.app :is(.quick-replies, .mood-picker)>button {
+  --control-shape: 65% 35% 47% 53% / 42% 38% 62% 58%;
+  --control-hover: 58% 42% 38% 62% / 48% 35% 65% 52%;
+  position: relative;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: var(--control-shape);
+  background: var(--baby-blue);
+  color: var(--text);
+  box-shadow: none;
+  transform: none;
+  transition: border-radius 250ms cubic-bezier(.23, 1, .32, 1), transform 200ms cubic-bezier(.23, 1, .32, 1);
+}
+.app :is(.quick-replies, .mood-picker)>button:nth-child(2) {
+  --control-shape: 42% 58% 31% 69% / 57% 43% 37% 63%;
+  --control-hover: 36% 64% 40% 60% / 49% 51% 32% 68%;
+}
+.app :is(.quick-replies, .mood-picker)>button:nth-child(3) {
+  --control-shape: 34% 66% 58% 42% / 41% 32% 68% 59%;
+  --control-hover: 42% 58% 65% 35% / 35% 41% 59% 65%;
+}
+.app :is(.quick-replies, .mood-picker)>button:nth-child(4) {
+  --control-shape: 62% 38% 28% 72% / 48% 39% 61% 52%;
+  --control-hover: 55% 45% 35% 65% / 42% 47% 53% 58%;
+}
+.app :is(.quick-replies, .mood-picker)>button:nth-child(5) {
+  --control-shape: 36% 64% 51% 49% / 29% 56% 44% 71%;
+  --control-hover: 43% 57% 59% 41% / 35% 49% 51% 65%;
+}
+.app :is(.quick-replies, .mood-picker)>button:nth-child(6) {
+  --control-shape: 71% 29% 55% 45% / 43% 61% 39% 57%;
+  --control-hover: 63% 37% 48% 52% / 36% 55% 45% 64%;
+}
+.app :is(.quick-replies, .mood-picker)>button::before {
+  content: "";
+  position: absolute;
+  inset: -2px 3px 2px -1px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .16;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+.app .quick-replies>button { min-height: 60px; padding: 16px 21px; font-size: 14px; line-height: 1.35; }
+.app .mood-picker>button { width: 68px; height: 68px; padding: 12px; font-size: 1.7rem; }
+.app :is(.quick-replies, .mood-picker)>button:hover,
+.app :is(.quick-replies, .mood-picker)>button:focus-visible { border-radius: var(--control-hover); }
+.app .mood-picker>button.selected { background: var(--blush); outline: 2px solid var(--pri); outline-offset: 3px; }
+.app :is(.quick-replies, .mood-picker)>button:focus-visible { outline: 3px solid var(--text); outline-offset: 5px; }
+.app :is(.quick-replies, .mood-picker)>button:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+  .app :is(.quick-replies, .mood-picker)>button { transition: none; }
+  .app :is(.quick-replies, .mood-picker)>button:active { transform: none; }
+}
+@media (forced-colors: active) {
+  .app :is(.quick-replies, .mood-picker)>button { border-color: ButtonText; }
+}

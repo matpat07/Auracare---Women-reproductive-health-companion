@@ -1,9 +1,14 @@
 /* ========= Mood Tracker ========= */
 let selectedMood = null;
 document.querySelectorAll('.mood-picker button').forEach(btn=>{
+  btn.setAttribute('aria-pressed','false');
   btn.addEventListener('click',()=>{
-    document.querySelectorAll('.mood-picker button').forEach(b=>b.classList.remove('selected'));
+    document.querySelectorAll('.mood-picker button').forEach(b=>{
+      b.classList.remove('selected');
+      b.setAttribute('aria-pressed','false');
+    });
     btn.classList.add('selected');
+    btn.setAttribute('aria-pressed','true');
     selectedMood={emoji:btn.dataset.mood,label:btn.dataset.label};
   });
 });
@@ -16,7 +21,10 @@ function saveMood(){
   moods.unshift({...selectedMood,note,date:new Date().toISOString()});
   localStorage.setItem('aura_moods',JSON.stringify(moods.slice(0,30)));
   document.getElementById('moodNote').value='';
-  document.querySelectorAll('.mood-picker button').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.mood-picker button').forEach(b=>{
+    b.classList.remove('selected');
+    b.setAttribute('aria-pressed','false');
+  });
   selectedMood=null;
   renderHistory();renderChart();
 }

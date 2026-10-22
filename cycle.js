@@ -127,6 +127,7 @@ function updateSymCounter() {
 }
 
 document.querySelectorAll('.symptom-btn').forEach(btn => {
+  btn.setAttribute('aria-pressed', 'false');
   btn.addEventListener('click', () => {
     const sym = btn.dataset.sym;
     if (selectedSymptoms.has(sym)) {
@@ -136,6 +137,7 @@ document.querySelectorAll('.symptom-btn').forEach(btn => {
       selectedSymptoms.add(sym);
       btn.classList.add('active');
     }
+    btn.setAttribute('aria-pressed', String(selectedSymptoms.has(sym)));
     updateSymCounter();
   });
 });
@@ -152,7 +154,10 @@ function saveSymptoms() {
   localStorage.setItem('aura_symptoms', JSON.stringify(all.slice(0, 90)));
   document.getElementById('symNotes').value = '';
   selectedSymptoms.clear();
-  document.querySelectorAll('.symptom-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.symptom-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
   updateSymCounter();
   renderSymHistory();
   renderInsights();
